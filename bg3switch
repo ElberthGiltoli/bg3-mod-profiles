@@ -4,7 +4,7 @@ create() {
 		echo "Baldur’s Gate 3 folder for \"${1}\" already exists."
 		exit 1
 	else
-		mkdir "profiles/${1}"
+		mkdir -p "profiles/${1}"
 
 		switch "${1}"
 	fi
@@ -34,7 +34,7 @@ link() {
 	mkdir -p "${_dir}/PlayerProfiles/Public/"
 	if [ ! -L "Baldur's Gate 3/PlayerProfiles/Public/modsettings.lsx" ]; then
 		echo "Non-link \"modsettings.lsx\" detected! Setting up symbolic link …"
-		if [ -f "${_dir}/PlayerProfiles/Public/modsettings.lsx" ]; then
+		if [ ! -f "${_dir}/PlayerProfiles/Public/modsettings.lsx" ]; then
 			mv "Baldur's Gate 3/PlayerProfiles/Public/modsettings.lsx" "${_dir}/PlayerProfiles/Public/"
 		fi
 		ln -s "../../../current/PlayerProfiles/Public/modsettings.lsx" "Baldur's Gate 3/PlayerProfiles/Public/"
